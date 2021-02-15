@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="mobile-screen">
+        <div class="header">
+          <h1>Log in</h1>
+        </div>
+        
+        <div class="logo"></div>
+        
+        <form id="registration-form">
+          <input type="email" name="email" placeholder="E-mail">
+          <input type="password" name="pass" placeholder="Password">
+          <input type="password" name="repass" placeholder="Repeat password">
+          <a href="register.html" class="login-btn" id="signup-btn">Sign Up</a>
+        </form>
+      
+        <form id="login-form">
+          <input type="email" name="email" placeholder="E-mail">
+          <input type="password" name="pass" placeholder="Password">
+          <a href="index.html" class="login-btn">Log in</a>
+        </form>
+        
+        <form id="fpass-form">
+          <input type="text" name="forgotten" placeholder="E-mail or phone number">
+          <a href="recuperarpassword.html" class="login-btn" id="getpass-btn">Get Password</a>
+        </form>
+        
+        <div class="other-options">
+          <div class="option" id="newUser"><p class="option-text"><button onclick="location.href='register.html'"> New User</button></p></div>
+          <div class="option" id="fPass"><p class="option-text"> Forgotten password</p></div>
+        </div>
+        
+      </div>
+</body>
+</html>
