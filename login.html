@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/login.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+  <title>Login</title>
+  <link rel="shortcut icon" type="image/png" href="images/icono.png"/>
+  <link rel="stylesheet" href="css/login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="mobile-screen">
         <div class="header">
-          <h1>Log in</h1>
+          <h1>Bienvenido</h1>
         </div>
         
-        <div class="logo"></div>
+        <div class="logo" style="left: 20px;">
+          <img src="images/icono.png" alt="" style="width: 100px; height: 100px; border-radius: 150px;  border:5px solid #1769e4;">
+        </div>
         
-        <form id="registration-form">
-          <input type="email" name="email" placeholder="E-mail">
-          <input type="password" name="pass" placeholder="Password">
-          <input type="password" name="repass" placeholder="Repeat password">
-          <a href="register.html" class="login-btn" id="signup-btn">Sign Up</a>
-        </form>
+        <!-- <form id="registration-form">
+          <input type="email" name="email" placeholder="Correo electronico">
+          <input type="password" name="pass" placeholder="Contraseña">
+          <input type="password" name="repass" placeholder="Repetir Contraseña">
+          <a href="register.html" class="login-btn" id="signup-btn">Inscribirse</a>
+        </form> -->
       
-        <form id="login-form">
-          <input type="email" name="email" placeholder="E-mail">
-          <input type="password" name="pass" placeholder="Password">
-          <a href="index.html" class="login-btn">Log in</a>
+        <form>
+          <input type="email" name="email" placeholder="Correo electronico">
+          <input type="password" name="pass" placeholder="Contraseña">
+          <a href="index.html" class="login-btn">Inicio sesión</a>
         </form>
         
-        <form id="fpass-form">
+        <!-- <form id="fpass-form">
           <input type="text" name="forgotten" placeholder="E-mail or phone number">
-          <a href="recuperarpassword.html" class="login-btn" id="getpass-btn">Get Password</a>
-        </form>
+          <a href="recuperarpassword.html" class="login-btn" id="getpass-btn">Obtener la contraseña</a>
+        </form> -->
         
         <div class="other-options">
-          <div class="option" id="newUser"><p class="option-text"><button onclick="location.href='register.html'"> New User</button></p></div>
-          <div class="option" id="fPass"><p class="option-text"> Forgotten password</p></div>
+          <div class="option" id="newUser"><p class="option-text"><a href="register.html" class="option-text" >Registrarse</a></p></div>
+          <div class="option" id="fPass"><p class="option-text"> Olvido su contraseña</p></div>
         </div>
         
       </div>
