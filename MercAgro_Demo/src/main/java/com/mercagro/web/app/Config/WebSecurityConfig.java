@@ -22,18 +22,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     String[] resources = new String[]{
             "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
     };
+    
+    
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-	        .antMatchers(resources).permitAll()  
-	        .antMatchers("/css/*").permitAll()
-	        .antMatchers("/img/**","/js/**").permitAll()
-	        .antMatchers("/icons/**").permitAll()
-	        .antMatchers("/inicio","/menu").permitAll()
-	        .antMatchers("/admin*").access("hasRole('ADMIN')")
-	        .antMatchers("/user*").access("hasRole('USER')")
+	        .antMatchers(resources).permitAll()
+	        .antMatchers("/images/**","/js/**","/css/**","/icons/**").permitAll()
+	        .antMatchers("/inicio","/menu","/register","/contacto","/infoproductos","/noticias","/productos","/contacto").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -69,7 +67,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
  
         // Setting Service to find User in the database.
         // And Setting PassswordEncoder
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    	/*auth.inMemoryAuthentication()
+        .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
+        .and()
+        .withUser("admin").password(passwordEncoder().encode("password")).roles("USER", "ADMIN");*/
     }
 
 }
