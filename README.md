@@ -1,2 +1,0 @@
-# MercAgro
-Proyecto MercAgro
