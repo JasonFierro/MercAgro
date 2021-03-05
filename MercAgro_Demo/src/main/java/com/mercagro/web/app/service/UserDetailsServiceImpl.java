@@ -18,7 +18,7 @@ import com.mercagro.web.app.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	@Autowired
+    @Autowired
     UserRepository userRepository;
 	
     @Override
@@ -26,18 +26,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
      //Buscar el usuario con el repositorio y si no existe lanzar una exepcion
     	com.mercagro.web.app.entity.Clientes appUser = 
-                 userRepository.findByUsuario(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
+                 userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 		
     //Mapear nuestra lista de Authority con la de spring security 
     List grantList = new ArrayList();
-    for (Role roles: appUser.getRoles()) {
+    for (Role authority: appUser.getAuthority()) {
         // ROLE_USER, ROLE_ADMIN,..
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roles.getNombre());
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getAuthority());
             grantList.add(grantedAuthority);
     }
 		
     //Crear El objeto UserDetails que va a ir en sesion y retornarlo.
-    UserDetails user = (UserDetails) new User(appUser.getUsuario(), appUser.getContrasena(), grantList);
+    UserDetails user = (UserDetails) new User(appUser.getUsername(), appUser.getPassword(), grantList);
          return user;
     }
 }

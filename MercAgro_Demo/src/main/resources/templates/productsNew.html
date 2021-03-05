@@ -17,12 +17,16 @@
 <div class="main-bg">
   <header>
     <div class="inner">
+    <h1 th:inline="text">Bienvenido [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form style="left: 720px;position: relative; height: 70px" th:action="@{/logout}" method="post">
+            <input type="submit" value="Cerrar Sesion"/>
+        </form>
       <h1 class="logo"><a href="index.html"></a></h1>
       <nav>
         <ul class="sf-menu">
-          <li><a href="index.html">Inicio</a></li>
-          <li class="current"><a href="products.html">Productos</a></li>
-          <li> <a href="news.html">Noticias</a>
+          <li><a th:href="@{inicio}">Inicio</a></li>
+          <li class="current"><a th:href="@{productos}">Productos</a></li>
+          <li> <a th:href="@{noticias}">Noticias</a>
             <ul>
               <li><a href="#">Novedades</a></li>
               <li><a href="#">Herramientas</a></li>
@@ -35,7 +39,7 @@
               <li><a href="#">Vehiculos</a></li>
             </ul>
           </li>
-          <li><a href="contacts.html">Contactenos</a></li>
+          <li><a th:href="@{contacto}">Contactenos</a></li>
         </ul>
       </nav>
       <div class="clear"></div>

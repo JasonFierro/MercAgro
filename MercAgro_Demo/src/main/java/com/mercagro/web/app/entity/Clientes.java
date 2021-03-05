@@ -34,9 +34,6 @@ public class Clientes {
 	@Column
 	private Long id_tipoDocumento;
 	
-	@Column
-	private Long id_estado;
-	
 	@Column 
 	@NotEmpty(message = "Ingrese el nombre")
 	private String nombre;
@@ -67,35 +64,24 @@ public class Clientes {
 	@NotEmpty(message = "Ingrese la dirección")
 	private String direccion;
 	
-	@Column()
-	@NotEmpty(message = "Ingrese el usuario")
-	@Size(min = 5, max = 15)
-	private String usuario;
-	
+	@Transient 
+	private String confirmPassword;
+
 	@Column
-	@NotEmpty(message = "Ingrese la contraseña")
-	private String contrasena;
+	private String username;
+
+	@Column
+	private String password;
 	
 	@Transient 
 	private String confirmContrasena;
-	
+
 	@Column
 	private boolean enabled;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="user_roles"
-		,joinColumns=@JoinColumn(name="user_id")
-		,inverseJoinColumns=@JoinColumn(name="role_id"))
-	private Set<Role> roles;
-	
-	public Clientes() {
-		super();
-	}
-	
-	
-	public Clientes(Long id) {
-		this.id = id;
-	}
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
+	private Set<Role> authority;
 
 	public Long getId() {
 		return id;
@@ -103,7 +89,7 @@ public class Clientes {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+	}	
 
 	public Long getId_ciudad() {
 		return id_ciudad;
@@ -119,14 +105,6 @@ public class Clientes {
 
 	public void setId_tipoDocumento(Long id_tipoDocumento) {
 		this.id_tipoDocumento = id_tipoDocumento;
-	}
-
-	public Long getId_estado() {
-		return id_estado;
-	}
-
-	public void setId_estado(Long id_estado) {
-		this.id_estado = id_estado;
 	}
 
 	public String getNombre() {
@@ -185,38 +163,29 @@ public class Clientes {
 		this.direccion = direccion;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getConfirmContrasena() {
-		return confirmContrasena;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setConfirmContrasena(String confirmContrasena) {
-		this.confirmContrasena = confirmContrasena;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-	
 
 	public boolean isEnabled() {
 		return enabled;
@@ -226,40 +195,37 @@ public class Clientes {
 		this.enabled = enabled;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Clientes [id=" + id + ", id_ciudad=" + id_ciudad + ", id_tipoDocumento=" + id_tipoDocumento
-				+ ", id_estado=" + id_estado + ", nombre=" + nombre + ", apellido=" + apellido + ", documento="
-				+ documento + ", correo=" + correo + ", celular=" + celular + ", telefono=" + telefono + ", direccion="
-				+ direccion + ", usuario=" + usuario + ", contrasena=" + contrasena + ", confirmContrasena="
-				+ confirmContrasena + ", enabled=" + enabled + ", roles=" + roles + "]";
+	public Set<Role> getAuthority() {
+		return authority;
 	}
 
+	public void setAuthority(Set<Role> authority) {
+		this.authority = authority;
+	}
+
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
+		result = prime * result + ((authority == null) ? 0 : authority.hashCode());
 		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
-		result = prime * result + ((confirmContrasena == null) ? 0 : confirmContrasena.hashCode());
-		result = prime * result + ((contrasena == null) ? 0 : contrasena.hashCode());
+		result = prime * result + ((confirmPassword == null) ? 0 : confirmPassword.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + ((documento == null) ? 0 : documento.hashCode());
 		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((id_ciudad == null) ? 0 : id_ciudad.hashCode());
-		result = prime * result + ((id_estado == null) ? 0 : id_estado.hashCode());
 		result = prime * result + ((id_tipoDocumento == null) ? 0 : id_tipoDocumento.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -275,20 +241,20 @@ public class Clientes {
 				return false;
 		} else if (!apellido.equals(other.apellido))
 			return false;
+		if (authority == null) {
+			if (other.authority != null)
+				return false;
+		} else if (!authority.equals(other.authority))
+			return false;
 		if (celular == null) {
 			if (other.celular != null)
 				return false;
 		} else if (!celular.equals(other.celular))
 			return false;
-		if (confirmContrasena == null) {
-			if (other.confirmContrasena != null)
+		if (confirmPassword == null) {
+			if (other.confirmPassword != null)
 				return false;
-		} else if (!confirmContrasena.equals(other.confirmContrasena))
-			return false;
-		if (contrasena == null) {
-			if (other.contrasena != null)
-				return false;
-		} else if (!contrasena.equals(other.contrasena))
+		} else if (!confirmPassword.equals(other.confirmPassword))
 			return false;
 		if (correo == null) {
 			if (other.correo != null)
@@ -317,11 +283,6 @@ public class Clientes {
 				return false;
 		} else if (!id_ciudad.equals(other.id_ciudad))
 			return false;
-		if (id_estado == null) {
-			if (other.id_estado != null)
-				return false;
-		} else if (!id_estado.equals(other.id_estado))
-			return false;
 		if (id_tipoDocumento == null) {
 			if (other.id_tipoDocumento != null)
 				return false;
@@ -332,22 +293,32 @@ public class Clientes {
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (roles == null) {
-			if (other.roles != null)
+		if (password == null) {
+			if (other.password != null)
 				return false;
-		} else if (!roles.equals(other.roles))
+		} else if (!password.equals(other.password))
 			return false;
 		if (telefono == null) {
 			if (other.telefono != null)
 				return false;
 		} else if (!telefono.equals(other.telefono))
 			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!usuario.equals(other.usuario))
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", id_ciudad=" + id_ciudad + ", id_tipoDocumento=" + id_tipoDocumento + ", nombre="
+				+ nombre + ", apellido=" + apellido + ", documento=" + documento + ", correo=" + correo + ", celular="
+				+ celular + ", telefono=" + telefono + ", direccion=" + direccion + ", confirmPassword="
+				+ confirmPassword + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", authority=" + authority + "]";
+	}
+
+	
 }

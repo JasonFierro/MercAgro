@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	private boolean checkUsernameAvailable(Clientes clientes) throws Exception {
-		Optional<Clientes> userFound = repository.findByUsuario(clientes.getUsuario());
+		Optional<Clientes> userFound = repository.findByUsername(clientes.getUsername());
 		if (userFound.isPresent()) {
 			throw new Exception("Usuario no disponible");
 		}
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	private boolean checkPasswordValid(Clientes clientes) throws Exception {
-		if ( !clientes.getContrasena().equals(clientes.getConfirmContrasena())) 
+		if ( !clientes.getPassword().equals(clientes.getConfirmPassword())) 
 		{
 			throw new Exception("Contraseña y Confirmar Contraseña no son iguales");
 		}

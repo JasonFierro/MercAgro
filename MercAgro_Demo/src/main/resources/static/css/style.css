@@ -300,6 +300,33 @@ a:hover {
 .link:hover {
 	text-decoration: none;
 }
+
+.content-select{
+    max-width: 300px;
+    position: relative;
+}
+.content-select select{
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 7px 10px;
+    height: 42px;
+    outline: 0; 
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: #7b7b7b;
+    font-size: 1em;
+    color: #999;
+    font-family: 
+    'Quicksand', sans-serif;
+    border:2px solid rgb(36, 141, 10);
+    border-radius: 12px;
+    /* border:2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;*/
+    position: relative;
+    transition: all 0.25s ease;
+}
 /*********************************header*************************************/
 header {
 	position:relative;

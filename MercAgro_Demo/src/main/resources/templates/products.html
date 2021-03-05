@@ -57,7 +57,14 @@
 					<div class="grid_24 content-bg">
 						<div class="wrapper">
 							<article class="grid_22 suffix_1 prefix_1 alpha omega">
+							<a th:href="@{nuevosProductos}"><h2 style="">Agregar productos</h2></a>
 								<h2>Todos los productos:</h2>
+								<tr th:each="productos: ${productList}">
+								<td th:text="${productos.nombre}"></td>
+								<td th:text="${productos.descripcion}"></td>
+								<td th:text="${productos.costo}"></td>
+								<td th:text="${productos.cantidad}"></td>
+								<td>
 								<div class="wrapper indent-bot">
 									<div class="grid_7 alpha">
 										<div class="wrapper">
