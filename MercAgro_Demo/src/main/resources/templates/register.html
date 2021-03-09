@@ -24,8 +24,8 @@
 
 
 		<div class="logo" style="left: 20px;">
-			<img src="images/icono.png" alt=""
-				style="width: 150px; height: 150px; border-radius: 150px; border: 5px solid #1769e4;">
+			<a th:href="@{/inicio}"><img src="images/icono.png" alt=""
+				style="width: 150px; height: 150px; border-radius: 150px; border: 5px solid #1769e4;"></a>
 		</div>
 
 		<div class="container">
@@ -39,15 +39,15 @@
 
 				</div>
 				<div class="col-md-4 mt-2">
-					<input type="number" name="cedula" placeholder="Documento:">
+					<input type="text" name="cedula" placeholder="Documento:">
 
 				</div>
 				<div class="col-md-4 mt-2">
-					<input type="number" name="celular" placeholder="Celular:">
+					<input type="text" name="celular" placeholder="Celular:">
 
 				</div>
 				<div class="col-md-4 mt-2">
-					<input type="number" name="telFijo" placeholder="Telefono fijo:">
+					<input type="text" name="telFijo" placeholder="Telefono fijo:">
 
 				</div>
 				<div class="col-md-4 mt-2">
@@ -59,9 +59,9 @@
 				</div>
 				
 				<div class="col-md-4 mt-2">
-						<select class="form-control" th:field="${userForm.roles}">
-							<option th:each="role :${roles}" th:value="${role.id}"
-								th:text="${role.nombre}"></option>
+						<select class="form-control">
+							<option selected="true" disabled="disabled" th:each="role: ${roles}" th:value="${role.id}"
+								th:text="${role.descripcion}"></option>
 						</select>
 						<div class="alert-danger" th:if="${#fields.hasErrors('roles')}"
 							th:errors="*{roles}">Name Error</div>
@@ -80,6 +80,7 @@
 
 				<div class="d-grid gap-2" style="width: 890px;">
 					<a class="btn btn-success btn-lg" href="index.html" role="button">Registrarse</a>
+					<a class="btn btn-success btn-lg" th:href="@{/inicio}" role="button">Inicio MercAgro</a>
 				</div>
 
 			</form>

@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .authorizeRequests()
 	        .antMatchers(resources).permitAll()
 	        .antMatchers("/images/**","/js/**","/css/**","/icons/**").permitAll()
-	        .antMatchers("/inicio","/menu","/register","/contacto","/infoproductos","/noticias","/productos","/contacto").permitAll()
+	        .antMatchers("/inicio","/menu","/register","/contacto","/infoproductos","/noticias","/productos","/contacto","/listar").permitAll()
 	        .antMatchers("/admin*","/nuevosProductos").access("hasRole('ADMIN')")
 	        .antMatchers("/user*","/inicio*","/menu*","/register*","/contacto*","/infoproductos*","/noticias*","/productos*","/contacto*").access("hasRole('USER') or hasRole('ADMIN')")
                 .anyRequest().authenticated()

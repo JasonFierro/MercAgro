@@ -18,10 +18,10 @@ public class Productos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private Long id_articulo;
+	private int id;
 	
 	@Column
-	private Long id_estado;
+	private int id_estado;
 	
 	@Column 
 	@NotEmpty(message = "Ingrese el nombre")
@@ -42,22 +42,22 @@ public class Productos {
 	private String cantidad;
 
 
-	public Long getId_articulo() {
-		return id_articulo;
+	public int getId() {
+		return id;
 	}
 
 
-	public void setId_articulo(Long id_articulo) {
-		this.id_articulo = id_articulo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
-	public Long getId_estado() {
+	public int getId_estado() {
 		return id_estado;
 	}
 
 
-	public void setId_estado(Long id_estado) {
+	public void setId_estado(int id_estado) {
 		this.id_estado = id_estado;
 	}
 
@@ -104,8 +104,8 @@ public class Productos {
 
 	@Override
 	public String toString() {
-		return "Productos [id_articulo=" + id_articulo + ", id_estado=" + id_estado + ", nombre=" + nombre
-				+ ", descripcion=" + descripcion + ", costo=" + costo + ", cantidad=" + cantidad + "]";
+		return "Productos [id=" + id + ", id_estado=" + id_estado + ", nombre=" + nombre + ", descripcion="
+				+ descripcion + ", costo=" + costo + ", cantidad=" + cantidad + "]";
 	}
 
 
@@ -116,8 +116,8 @@ public class Productos {
 		result = prime * result + ((cantidad == null) ? 0 : cantidad.hashCode());
 		result = prime * result + ((costo == null) ? 0 : costo.hashCode());
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((id_articulo == null) ? 0 : id_articulo.hashCode());
-		result = prime * result + ((id_estado == null) ? 0 : id_estado.hashCode());
+		result = prime * result + id;
+		result = prime * result + id_estado;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
@@ -147,15 +147,9 @@ public class Productos {
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
-		if (id_articulo == null) {
-			if (other.id_articulo != null)
-				return false;
-		} else if (!id_articulo.equals(other.id_articulo))
+		if (id != other.id)
 			return false;
-		if (id_estado == null) {
-			if (other.id_estado != null)
-				return false;
-		} else if (!id_estado.equals(other.id_estado))
+		if (id_estado != other.id_estado)
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -164,6 +158,7 @@ public class Productos {
 			return false;
 		return true;
 	}
-	
 
+
+	
 }

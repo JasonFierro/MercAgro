@@ -1,10 +1,15 @@
 package com.mercagro.web.app.repository;
 
-import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
 import com.mercagro.web.app.entity.Productos;
+import com.sun.el.stream.Optional;
 
 @Repository
-public interface ProductRepository {
-	public Optional<Productos> findByProducts(String products);
+public interface ProductRepository extends CrudRepository<Productos, Long> {
+	
+	public Optional findByNombre(String nombre);
+
 }
