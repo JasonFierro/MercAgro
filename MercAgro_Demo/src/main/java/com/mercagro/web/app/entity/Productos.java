@@ -21,7 +21,7 @@ public class Productos {
 	private int id;
 	
 	@Column
-	private int id_estado;
+	private int id_estado = 1;
 	
 	@Column 
 	@NotEmpty(message = "Ingrese el nombre")
@@ -38,9 +38,11 @@ public class Productos {
 	
 	@Column
 	@NotEmpty(message = "Ingrese la cantidad")
-	@Email
 	private String cantidad;
-
+	
+	@Column
+	@NotEmpty(message = "Ingrese el tipo")
+	private String tipo;
 
 	public int getId() {
 		return id;
@@ -102,10 +104,20 @@ public class Productos {
 	}
 
 
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Productos [id=" + id + ", id_estado=" + id_estado + ", nombre=" + nombre + ", descripcion="
-				+ descripcion + ", costo=" + costo + ", cantidad=" + cantidad + "]";
+				+ descripcion + ", costo=" + costo + ", cantidad=" + cantidad + ", tipo=" + tipo + "]";
 	}
 
 
@@ -119,6 +131,7 @@ public class Productos {
 		result = prime * result + id;
 		result = prime * result + id_estado;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -155,6 +168,11 @@ public class Productos {
 			if (other.nombre != null)
 				return false;
 		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
 			return false;
 		return true;
 	}

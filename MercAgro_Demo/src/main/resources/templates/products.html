@@ -28,16 +28,7 @@
 						<li><a th:href="@{inicio}">Inicio</a></li>
 						<li class="current"><a th:href="@{productos}">Productos</a></li>
 						<li><a th:href="@{noticias}">Noticias</a>
-							<ul>
-								<li><a href="#">Novedades</a></li>
-								<li><a href="#">Herramientas</a></li>
-								<li><a href="#">Riego</a>
-									<ul>
-										<li><a href="#">Moto bombas</a></li>
-										<li><a href="#">Herramientas de mano</a></li>
-									</ul></li>
-								<li><a href="#">Vehiculos</a></li>
-							</ul></li>
+						</li>
 						<!--<li><a href="pricing.html">Precios</a></li>-->
 						<li><a th:href="@{contacto}">Contactenos</a></li>
 						<li><a th:href="@{login}">Ingresar</a>
@@ -63,7 +54,7 @@
 								<div class="wrapper indent-bot" th:each="prod: ${productoList}">
 									<div class="grid_7 alpha">
 										<div class="wrapper">
-											<img src="images/page2-img1.jpg" alt="" class="img-indent">
+											<img src="images/page2-img1a.jpg" alt="" class="img-indent">
 											<dl class="extra-wrap def-list-1">
 												<dt th:text="${prod.nombre}"></dt>
 												<dd th:text="${prod.descripcion}"></dd>

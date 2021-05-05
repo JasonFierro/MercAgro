@@ -17,6 +17,15 @@ public class ProductoServiceImpl implements ProductoService {
 		return productRepository.findAll();
 	}
 
+	@Override
+	public Productos createProduct(Productos productos) throws Exception {
+		if (productos != null) {
+			return productRepository.save(productos);
+		} 
+		return new Productos();
+	}
+
+
 	/*
 	@Override
 	public List<Productos> findAllProductos() {

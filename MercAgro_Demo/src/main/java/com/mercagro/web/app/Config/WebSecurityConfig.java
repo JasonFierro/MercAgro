@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.mercagro.web.app.service.UserDetailsServiceImpl;
@@ -29,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .authorizeRequests()
 	        .antMatchers(resources).permitAll()
 	        .antMatchers("/images/**","/js/**","/css/**","/icons/**").permitAll()
-	        .antMatchers("/inicio","/menu","/register","/contacto","/infoproductos","/noticias","/productos","/contacto","/listar").permitAll()
+	        .antMatchers("/inicio","/menu","/userForm","/contacto","/infoproductos","/noticias","/productos","/contacto","/listar","/registro").permitAll()
 	        .antMatchers("/admin*","/nuevosProductos").access("hasRole('ADMIN')")
 	        .antMatchers("/user*","/inicio*","/menu*","/register*","/contacto*","/infoproductos*","/noticias*","/productos*","/contacto*").access("hasRole('USER') or hasRole('ADMIN')")
                 .anyRequest().authenticated()
@@ -37,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/menu")
+                .defaultSuccessUrl("/nuevosProductos")
                 .failureUrl("/login?error=true")
                 .usernameParameter("usuario")
                 .passwordParameter("contrasena")
@@ -59,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 	
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    UserDetailsService userDetailsService;
 	
     //Registra el service para usuarios y el encriptador de contrasena
     @Autowired

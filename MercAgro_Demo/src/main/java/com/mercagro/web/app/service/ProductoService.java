@@ -9,6 +9,8 @@ public interface ProductoService {
 	
 	public Iterable<Productos> getAllProductos();
 	
+	public Productos createProduct(Productos productos) throws Exception;
+	
 	/*public Optional<Productos> findProductosById(Long id);
 	
 	public Productos saveProductos(Productos productosnew);

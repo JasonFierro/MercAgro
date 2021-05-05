@@ -14,14 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 
 @Entity
-public class Clientes {
+public class Clientes implements Serializable {
 	
-	private static final long serialVersionUID = -6833167247955613395L;
+	private static final long serialVersionUID = 1671417246199538663L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
@@ -32,7 +32,7 @@ public class Clientes {
 	private Long id_ciudad;
 	
 	@Column
-	private Long id_tipoDocumento;
+	private Long id_tipodocumento;
 	
 	@Column 
 	@NotEmpty(message = "Ingrese el nombre")
@@ -77,7 +77,7 @@ public class Clientes {
 	private String confirmContrasena;
 
 	@Column
-	private boolean enabled;
+	private int enabled = 1;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
@@ -99,12 +99,12 @@ public class Clientes {
 		this.id_ciudad = id_ciudad;
 	}
 
-	public Long getId_tipoDocumento() {
-		return id_tipoDocumento;
+	public Long getId_tipodocumento() {
+		return id_tipodocumento;
 	}
 
-	public void setId_tipoDocumento(Long id_tipoDocumento) {
-		this.id_tipoDocumento = id_tipoDocumento;
+	public void setId_tipodocumento(Long id_tipoDocumento) {
+		this.id_tipodocumento = id_tipoDocumento;
 	}
 
 	public String getNombre() {
@@ -179,19 +179,27 @@ public class Clientes {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getConfirmContrasena() {
+		return confirmContrasena;
+	}
+
+	public void setConfirmContrasena(String confirmContrasena) {
+		this.confirmContrasena = confirmContrasena;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public boolean isEnabled() {
+	public String getPassword() {
+		return password;
+	}
+
+	public int isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
 
@@ -212,14 +220,15 @@ public class Clientes {
 		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
 		result = prime * result + ((authority == null) ? 0 : authority.hashCode());
 		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
+		result = prime * result + ((confirmContrasena == null) ? 0 : confirmContrasena.hashCode());
 		result = prime * result + ((confirmPassword == null) ? 0 : confirmPassword.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + ((documento == null) ? 0 : documento.hashCode());
-		result = prime * result + (enabled ? 1231 : 1237);
+		result = prime * result + enabled;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((id_ciudad == null) ? 0 : id_ciudad.hashCode());
-		result = prime * result + ((id_tipoDocumento == null) ? 0 : id_tipoDocumento.hashCode());
+		result = prime * result + ((id_tipodocumento == null) ? 0 : id_tipodocumento.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
@@ -250,6 +259,11 @@ public class Clientes {
 			if (other.celular != null)
 				return false;
 		} else if (!celular.equals(other.celular))
+			return false;
+		if (confirmContrasena == null) {
+			if (other.confirmContrasena != null)
+				return false;
+		} else if (!confirmContrasena.equals(other.confirmContrasena))
 			return false;
 		if (confirmPassword == null) {
 			if (other.confirmPassword != null)
@@ -283,10 +297,10 @@ public class Clientes {
 				return false;
 		} else if (!id_ciudad.equals(other.id_ciudad))
 			return false;
-		if (id_tipoDocumento == null) {
-			if (other.id_tipoDocumento != null)
+		if (id_tipodocumento == null) {
+			if (other.id_tipodocumento != null)
 				return false;
-		} else if (!id_tipoDocumento.equals(other.id_tipoDocumento))
+		} else if (!id_tipodocumento.equals(other.id_tipodocumento))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -313,7 +327,7 @@ public class Clientes {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", id_ciudad=" + id_ciudad + ", id_tipoDocumento=" + id_tipoDocumento + ", nombre="
+		return "User [id=" + id + ", id_ciudad=" + id_ciudad + ", id_tipoDocumento=" + id_tipodocumento + ", nombre="
 				+ nombre + ", apellido=" + apellido + ", documento=" + documento + ", correo=" + correo + ", celular="
 				+ celular + ", telefono=" + telefono + ", direccion=" + direccion + ", confirmPassword="
 				+ confirmPassword + ", username=" + username + ", password=" + password + ", enabled=" + enabled
