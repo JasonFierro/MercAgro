@@ -28,17 +28,6 @@
           <li><a th:href="@{inicio}">Inicio</a></li>
           <li class="current"><a th:href="@{productos}">Productos</a></li>
           <li> <a th:href="@{noticias}">Noticias</a>
-            <ul>
-              <li><a href="#">Novedades</a></li>
-              <li><a href="#">Herramientas</a></li>
-              <li> <a href="#">Riego</a>
-                <ul>
-                  <li><a href="#">Moto bombas</a></li>
-                  <li><a href="#">Herramientas de mano</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Vehiculos</a></li>
-            </ul>
           </li>
           <li><a th:href="@{contacto}">Contactenos</a></li>
         </ul>
@@ -57,12 +46,12 @@
                 <form class="row g-2" role="form" autocomplete="off"
 				th:object="${nuevosProductos}" th:action="@{/nuevosProductos}" method="post">
 				
-                    <div class="col-md-8 mt-2">
+                    <div class="col-md-12 mt-2">
                       <input type="text" name="nombre" placeholder="Nombre producto:" required="required"
                       th:field="${nuevosProductos.nombre}">
 					<div class="alert-danger" th:if="${#fields.hasErrors('nombre')}"
 						th:errors="*{nombre}">Nombre Error</div>
-                    </div>
+                    </div><br><br>
                     <div class="col-md-8 mt-2">
                     <textarea rows="10" cols="50" name="descripcion" placeholder="  Descripción producto:"
                      th:field="${nuevosProductos.descripcion}" required="required"
@@ -70,19 +59,31 @@
                      color: white; font-size: 20px;"></textarea>
 					<div class="alert-danger" th:if="${#fields.hasErrors('descripcion')}"
 						th:errors="*{descripcion}">Descripción Error</div>
-                    </div>
+                    </div><br><br>
                     <div class="col-md-8 mt-2">
                         <input type="number" name="cantidad" placeholder="Cantidad en bultos:"
                        th:field="${nuevosProductos.cantidad}" required="required">
 					<div class="alert-danger" th:if="${#fields.hasErrors('cantidad')}"
 						th:errors="*{cantidad}">Cantidad Error</div>
-                      </div>
+                      </div><br><br>
                     <div class="col-md-8 mt-2">
                       <input type="number" name="valor" placeholder="valor en pesos:"
                      th:field="${nuevosProductos.costo}">
 					<div class="alert-danger" th:if="${#fields.hasErrors('costo')}"
 						th:errors="*{costo}">Valor Error</div>
-                    </div>
+                    </div><br><br>
+                    <div class="col-md-8 mt-2">
+                      <input type="text" name="cliente" placeholder="Nombre del Vendedor: " required="required"
+                      th:field="${nuevosProductos.cliente}">
+					<div class="alert-danger" th:if="${#fields.hasErrors('cliente')}"
+						th:errors="*{cliente}">Nombre Cliente Error</div>
+                    </div><br><br>
+                    <div class="col-md-8 mt-2">
+                      <input type="text" name="telefono" placeholder="Telefono del vendedor: " required="required"
+                      th:field="${nuevosProductos.telefono}">
+					<div class="alert-danger" th:if="${#fields.hasErrors('telefono')}"
+						th:errors="*{telefono}">Telefono Error</div>
+                    </div><br><br>
 
                     <div class="col-md-8 mt-2 content-select">
                       <select th:field="${nuevosProductos.tipo}" style="font-size:18px; background-color: transparent;color: gray; border-color: green;" class="form-control">

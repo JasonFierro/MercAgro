@@ -31,8 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	        .antMatchers(resources).permitAll()
 	        .antMatchers("/images/**","/js/**","/css/**","/icons/**").permitAll()
 	        .antMatchers("/inicio","/menu","/userForm","/contacto","/infoproductos","/noticias","/productos","/contacto","/listar","/registro").permitAll()
-	        .antMatchers("/admin*","/nuevosProductos").access("hasRole('ADMIN')")
-	        .antMatchers("/user*","/inicio*","/menu*","/register*","/contacto*","/infoproductos*","/noticias*","/productos*","/contacto*").access("hasRole('USER') or hasRole('ADMIN')")
+	        //.antMatchers("/listar").access("hasRole('ADMIN')")
+	        .antMatchers("/nuevosProductos","/listarProducto","/listar").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
             .logout()
                 .permitAll()
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout");
     }
     BCryptPasswordEncoder bCryptPasswordEncoder;

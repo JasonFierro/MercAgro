@@ -1,7 +1,9 @@
 package com.mercagro.web.app.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -27,19 +29,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-     //Buscar el usuario con el repositorio y si no existe lanzar una exepcion
     	com.mercagro.web.app.entity.Clientes appUser = 
                  userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 		
-    //Mapear nuestra lista de Authority con la de spring security 
-    List grantList = new ArrayList();
+    //List grantList = new ArrayList();
+    Set<GrantedAuthority> grantList = new HashSet<GrantedAuthority>();
     for (Role authority: appUser.getAuthority()) {
-        // ROLE_USER, ROLE_ADMIN,..
+
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getAuthority());
             grantList.add(grantedAuthority);
     }
 		
-    //Crear El objeto UserDetails que va a ir en sesion y retornarlo.
     UserDetails user = (UserDetails) new User(appUser.getUsername(), appUser.getPassword(), grantList);
          return user;
     }

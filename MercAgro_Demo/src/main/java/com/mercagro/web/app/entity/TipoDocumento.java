@@ -21,6 +21,7 @@ public class TipoDocumento {
 	@Column
 	private String descripcion;
 
+	@Column
 	public int getId_tipodocumento() {
 		return id_tipodocumento;
 	}

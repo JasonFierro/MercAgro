@@ -16,7 +16,7 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private int id;
+	private long id;
 	
 	@Column
 	private String authority;
@@ -26,7 +26,7 @@ public class Role {
 	
 	
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -61,7 +61,7 @@ public class Role {
 		int result = 1;
 		result = prime * result + ((authority == null) ? 0 : authority.hashCode());
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -87,8 +87,7 @@ public class Role {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-	
+	}	
 	
 	
 }

@@ -8,15 +8,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 
 @Entity
 public class Clientes implements Serializable {
@@ -82,6 +81,15 @@ public class Clientes implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
 	private Set<Role> authority;
+	
+	public Clientes() {
+		super();
+	}
+
+	public Clientes(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;

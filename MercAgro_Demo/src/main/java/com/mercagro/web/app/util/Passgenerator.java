@@ -1,4 +1,4 @@
-package com.mercagro.web.app.util;
+/*package com.mercagro.web.app.util;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -10,4 +10,4 @@ public class Passgenerator {
 	System.out.println(bCryptPasswordEncoder.encode("hola mundo"));
     }
 
-}
+}*/

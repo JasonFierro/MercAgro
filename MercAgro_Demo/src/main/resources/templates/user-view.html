@@ -46,7 +46,8 @@
 						th:errors="*{apellido}">Apellido Error</div>
 				</div>
 				<div class="col-md-4 mt-2 content-select">
-						<select style="background-color: transparent;color: gray;" class="form-control">
+						<select th:field="${userForm.id_tipodocumento}" style="background-color: transparent;color: gray;" class="form-control">
+						<option selected="selected" value="">Seleccione Tipo Documento</option>
 							<option th:each="tipo :${tipoDoc}" th:value="${tipo.id_tipodocumento}"
 								th:text="${tipo.descripcion}"></option>
 						</select>
@@ -67,9 +68,9 @@
 
 				</div>
 					<div class="col-md-4 mt-2 content-select">
-						<select style="background-color: transparent;color: gray;" class="form-control">
-							<option th:each="role :${roles}" th:value="${role.id}"
-								th:text="${role.descripcion}"></option>
+						<select th:field="${userForm.authority}" style="background-color: transparent;color: gray;" class="form-control">
+						<option selected="selected" value="">Seleccione Rol</option>
+							<option value="1">Cliente</option>
 						</select>
 						<div class="alert-danger"
 							th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}">Name
@@ -90,7 +91,8 @@
 
 				</div>
 				<div class="col-md-4 mt-2 content-select">
-						<select style="background-color: transparent;color: gray;" class="form-control">
+						<select th:field="${userForm.id_ciudad}" style="background-color: transparent;color: gray;" class="form-control">
+						<option selected="selected" value="">Seleccione la Ciudad</option>
 							<option th:each="ciudad :${ciudades}" th:value="${ciudad.id_ciudad}"
 								th:text="${ciudad.descripcion}"></option>
 						</select>

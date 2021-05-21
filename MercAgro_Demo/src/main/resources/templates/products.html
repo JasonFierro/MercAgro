@@ -10,10 +10,19 @@
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/tms-0.4.1.js"></script>
 <script src="js/slider.js"></script>
+<!-- <script src="js/jquery-ui.min.js"></script> 
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<script src="js/buscador.js"></script>-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <!--[if lt IE 9]>
 <script src="js/html5.js"></script>
 <link rel="stylesheet" href="css/ie.css"> 
 <![endif]-->
+
+
 </head>
 <body>
 	<div class="main-bg">
@@ -27,14 +36,13 @@
 					<ul class="sf-menu">
 						<li><a th:href="@{inicio}">Inicio</a></li>
 						<li class="current"><a th:href="@{productos}">Productos</a></li>
-						<li><a th:href="@{noticias}">Noticias</a>
-						</li>
+						<li><a th:href="@{noticias}">Noticias</a></li>
 						<!--<li><a href="pricing.html">Precios</a></li>-->
 						<li><a th:href="@{contacto}">Contactenos</a></li>
 						<li><a th:href="@{login}">Ingresar</a>
 							<ul>
-								<li><a th:href="@{login}">Iniciar Sesión</a></li>
-								<li><a th:href="@{registro}">Registrarse</a></li>
+								<!-- <li><a th:href="@{login}">Iniciar Sesión</a></li> -->
+              			<li><a th:href="@{userForm}">Registrarse</a></li>
 							</ul></li>
 					</ul>
 				</nav>
@@ -48,26 +56,79 @@
 					<div class="grid_24 content-bg">
 						<div class="wrapper">
 							<article class="grid_22 suffix_1 prefix_1 alpha omega">
-								<a th:href="@{nuevosProductos}"><h2 style="">Agregar
-										productos</h2></a>
-								<h2>Todos los productos:</h2>
-								<div class="wrapper indent-bot" th:each="prod: ${productoList}">
-									<div class="grid_7 alpha">
-										<div class="wrapper">
-											<img src="images/page2-img1a.jpg" alt="" class="img-indent">
-											<dl class="extra-wrap def-list-1">
-												<dt th:text="${prod.nombre}"></dt>
-												<dd th:text="${prod.descripcion}"></dd>
-												<dd th:text="' $ '+${prod.costo}+' valor bulto'"></dd>
-												<div class="option" id="newUser">
-													<p class="option-text">
-														<a th:href="@{infoproductos}" class="option-text">Ver
-															Mas</a>
-													</p>
-												</div>
-											</dl>
-										</div>
-									</div>
+								<div class="wrap">
+		<!-- <h1 style="color: white;">Escoge un producto</h1>
+		<div class="store-wrapper">
+			<div class="category_list">
+				<a href="#" class="category_item ct_item_active" th:category="all">Todo</a>
+				<a href="#" class="category_item" th:category="Legumbres">Legumbres</a>
+				<a href="#" class="category_item" th:category="Frutas">Frutas</a>
+				<a href="#" class="category_item" th:category="Verduras">Verduras</a>
+				<a href="#" class="category_item" th:category="Hortalizas">Hortalizas</a>
+			</div>
+			<div class="card-columns">
+			<section th:each="prod: ${productoList}" style="color: white;">
+				<div class="card" th:category="Frutas"SSFFFF>
+				<img src="images/frutas.jpg" height="120" />
+				</div>
+				<div class="product-item" th:category="Legumbres" th:if="${prod.tipo == 'Legumbres'}">
+				<img src="images/legumbres.jpeg" height="120" />
+				</div>
+				<div class="product-item" th:category="Verduras" th:if="${prod.tipo == 'Verduras'}">
+				<img src="images/verdura.jpg" height="120" />
+				</div>
+				<div class="product-item" th:category="Hortalizas" th:if="${prod.tipo == 'Hortalizas'}">
+				<img src="images/hortalizas.jpg" height="120" />
+				</div>
+				
+				<dl class="extra-wrap def-list-1">
+											<br>
+											<dt th:text="${prod.nombre}"></dt>
+											<dd th:text="${prod.descripcion}"></dd>
+											<dd th:text="' $ '+${prod.costo}+' valor bulto'"></dd>
+											<div class="option" id="newUser">
+												<p class="option-text">
+													<a th:href="@{infoproductos}" class="option-text">Ver
+														Mas</a>
+												</p>
+											</div>
+										</dl>
+			</section>
+			</div>
+			</div>
+			</div>-->
+			
+								<h2>
+									<a style="color: yellow;" th:href="@{nuevosProductos}">Agregar
+										productos</a>
+										
+										<a style="color: yellow; float:right;" th:href="@{listarProductos}">Editar Productos</a>
+								</h2>
+								<h2 style="color: white;">Todos los productos:</h2>
+								<br> <br>
+								<div class="card-columns">
+									<div class="card" th:each="prod: ${productoList}"
+										style="background-color: transparent; color: white;">
+										<span th:if="${prod.tipo == 'Legumbres'}"><img
+											src="images/legumbres.jpeg" height="120" /></span> <span
+											th:if="${prod.tipo == 'Frutas'}"><img
+											src="images/frutas.jpg" height="120" /></span> <span
+											th:if="${prod.tipo == 'Verduras'}"><img
+											src="images/verdura.jpg" height="120" /></span> <span
+											th:if="${prod.tipo == 'Hortalizas'}"><img
+											src="images/hortalizas.jpg" height="120" /></span>
+										<dl class="extra-wrap def-list-1">
+											<br>
+											<dt th:text="${prod.nombre}"></dt>
+											<dd th:text="${prod.descripcion}"></dd>
+											<dd th:text="'Cantidad Bultos '+${prod.cantidad}"></dd>
+											<dd th:text="'Valor Total $'+${prod.costo}"></dd>
+											<dd style="color: yellow;" th:text="'Nombre Contacto: '+${prod.cliente}"></dd>
+											<dd style="color: yellow;" th:text="'Telefóno: '+${prod.telefono}"></dd>
+											<div class="option" id="newUser">
+											</div>
+										</dl>
+									</div> 
 								</div>
 							</article>
 						</div>
@@ -91,9 +152,6 @@
 								<h5 class="heading-1">Links:</h5>
 								<ul class="footer-list">
 									<li><a href="contacts.html">Contactenos</a></li>
-									<!--<li><a href="#">Sugerir ideas</a></li>
-                <li><a href="#">Foro de apoyo</a></li>
-              </ul>-->
 							</div>
 							<div class="grid_4">
 								<h5 class="heading-1">Atencion al cliente:</h5>
@@ -101,13 +159,6 @@
 									<li><a href="#">soporte@mercagro.co</a></li>
 								</ul>
 							</div>
-							<!--<div class="grid_2 suffix_1 omega">
-              <ul class="social-list">
-                <li><a href="#"><img src="images/social-icon-1.png" alt=""></a></li>
-                <li><a href="#"><img src="images/social-icon-2.png" alt=""></a></li>
-                <li><a href="#"><img src="images/social-icon-3.png" alt=""></a></li>
-              </ul>
-            </div>-->
 						</div>
 					</div>
 				</div>
