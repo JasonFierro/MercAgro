@@ -1,0 +1,72 @@
+package com.mercagro.web.app.entity;
+
+public class imagesProduct {
+
+	private Long id;
+    private String image;
+ 
+    public imagesProduct() {
+ 
+    }
+ 
+    public imagesProduct(Long id, String image) {
+        this.id = id;
+        this.image = image;
+    }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		imagesProduct other = (imagesProduct) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "imagesProduct [id=" + id + ", image=" + image + "]";
+	}
+
+	
+    
+}
